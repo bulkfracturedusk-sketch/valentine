@@ -8,10 +8,10 @@ const messages = [
   "Try harder 😈",
   "Still NO? 😂",
   "Impossible 😌",
-"Khara ka?",
-"Ho mn na gaaaa..😌.",
-"plz.na Baby.....",
-"Majhypeksha Bhari nahi milnar!😜😜."
+  "Khara ka? 😜",
+  "Ho mn na gaaaa..😌",
+  "Plz na Baby 🥺",
+  "Majhypeksha bhari nahi milnar! 😜😜"
 ];
 
 let msgIndex = 0;
@@ -20,12 +20,20 @@ noBtn.addEventListener("mouseover", moveButton);
 noBtn.addEventListener("click", moveButton);
 
 function moveButton() {
-  const x = Math.random() * 200 - 100;
-  const y = Math.random() * 120 - 60;
+  const btnRect = noBtn.getBoundingClientRect();
 
-  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+  const maxX = window.innerWidth - btnRect.width - 20;
+  const maxY = window.innerHeight - btnRect.height - 20;
 
-  // change text INSIDE button
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
+
+  // IMPORTANT: use fixed positioning
+  noBtn.style.position = "fixed";
+  noBtn.style.left = `${x}px`;
+  noBtn.style.top = `${y}px`;
+
+  // update text inside button
   noBtn.innerText = messages[msgIndex % messages.length];
   msgIndex++;
 }
